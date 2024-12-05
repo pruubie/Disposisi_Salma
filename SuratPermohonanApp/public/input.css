@@ -1,0 +1,268 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f6f9ff; /* Updated body background color */
+    color: #333;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f6f9ff; /* Updated main container color */
+}
+
+.header-section {
+    background-color: white; /* White background */
+    padding: 20px;
+    color: #012970; /* Font color updated to #012970 */
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    z-index: 200;
+    box-shadow: 0 0.125rem 1.25rem 0 rgba(1, 41, 112, 0.1); /* Shadow below header */
+    font-family: 'Nunito', sans-serif; /* Font updated to Nunito */
+}
+
+.header-section .link {
+    text-decoration: none;
+    color: #012970;
+}
+
+.tre-jamin {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.flex-row {
+    display: flex;
+    flex-grow: 1;
+    z-index: 199;
+}
+
+/* Sidebar */
+.sidebar-section {
+    background-color: white; /* Sidebar background color white */
+    width: 250px;
+    padding: 20px;
+    z-index: 199;
+    box-shadow: 0.25rem 0.125rem 1.25rem 0 rgba(1, 41, 112, 0.1);
+
+    
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.link-2, .link-4, .link-3 {
+    margin-bottom: 20px;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #012970; /* Menu color */
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-nav a:hover {
+    background-color: #ecf0f1; /* Highlight color for hover */
+}
+
+.sidebar-nav a.active {
+    background-color: #ccd6e3; /* Highlight color when active */
+}
+
+.file-spreadsheet, .file-spreadsheet-5 {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+}
+
+.dashboard, .surat-masuk {
+    font-weight: 500;
+}
+
+/* Content Section */
+.content-section {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white; /* Table background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #012970; /* Header color */
+}
+
+/* Table Styles */
+#surat-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white; /* White table */
+}
+
+#surat-table th, #surat-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#surat-table th {
+    background-color: #012970; /* Header color of the table */
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#surat-table td {
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
+}
+
+#surat-table a {
+    color: #012970;
+    text-decoration: none;
+}
+
+#surat-table a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination Controls */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #012970; /* Blue button color */
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #ccd6e3; /* Button hover color */
+}
+
+.pagination input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.pagination input:focus {
+    outline: none;
+    border-color: #012970;
+}
+
+.pagination span {
+    font-size: 1rem;
+    color: #34495e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .flex-row {
+        flex-direction: column;
+    }
+
+    .sidebar-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content-section {
+        padding: 15px;
+    }
+
+    .pagination button, .pagination input {
+        font-size: 0.9rem;
+    }
+}
+
+/* Jarak di bawah tulisan "Track" */
+.sidebar-nav .track {
+    margin-bottom: 20px; /* Atur jarak di bawah tulisan "Track" */
+    font-size: 18px;
+}
+/* Jarak di bawah tulisan "Track" */
+.sidebar-nav .track {
+    margin-bottom: 20px; /* Atur jarak di bawah tulisan "Track" */
+    font-size: 18px;
+}
+
+/* Posisi "TRE-JAMIN" di pojok kiri atas */
+.header-section {
+    position: relative;
+    height: 60px; /* Tetapkan tinggi tetap */
+    background-color: #fff; /* Warna background sesuai desain */
+}
+
+.header-section .content .tre-jamin {
+    position: absolute;
+    top: 15px; /* Atur jarak dari atas */
+    left: 30px; /* Atur jarak dari kiri */
+    font-size: 24px; /* Ukuran font */
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #012970; /* Ganti warna sesuai keinginan */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group button {
+    background-color: #012970;
+    color: white;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}

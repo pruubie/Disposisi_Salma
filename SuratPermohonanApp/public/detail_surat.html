@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Surat</title>
+    <link rel="stylesheet" href="detail_surat.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-section">
+            <div class="content">
+                <a href="dashboard.html" class="link">
+                    <span class="tre-jamin">SALMA FT UNDIP</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="sidebar-section">
+                <div class="sidebar-nav">
+                    <span class="track">Menu</span>
+                    <div class="link-2">
+                      <a href="dashboard.html" >
+                        <div class="file-spreadsheet-5">
+                            <div class="group-6"></div>
+                        </div>
+                        <span class="dashboard">Dashboard</span>
+                    </a>
+                    </div>
+                    <div class="link-4">
+                      <a href="daftar-surat.html" class="active">
+                        <div class="file-spreadsheet">
+                            <div class="group-3"></div>
+                        </div>
+                        <span class="surat-masuk">Surat Masuk</span>
+                       </a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="content-section">
+                <h1>Detail Surat</h1>
+                <div id="detail-container">
+                    <!-- Data surat akan dimasukkan di sini -->
+                </div>
+                <a href="daftar-surat.html" class="back-link">Kembali ke Daftar Surat</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data surat untuk simulasi (seharusnya data ini berasal dari server/API)
+        const suratData = [
+            { id: 1, nim: '21120122130075', jenis_surat: 'Permohonan Data Penelitian', status: 'verifikator' },
+            { id: 2, nim: '21120122130076', jenis_surat: 'Permohonan Kerja Praktek', status: 'supervisor' },
+            { id: 3, nim: '21120122130077', jenis_surat: 'Permohonan Izin Penelitian', status: 'manajer' },
+            { id: 4, nim: '21120122130078', jenis_surat: 'Permohonan Cuti', status: 'wd' },
+            { id: 5, nim: '21120122130079', jenis_surat: 'Permohonan Magang', status: 'dekan' },
+            { id: 6, nim: '21120122130080', jenis_surat: 'Surat Keterangan Aktif', status: 'completed' }
+        ];
+
+        // Fungsi untuk mendapatkan parameter dari URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Ambil ID surat dari URL
+        const suratId = getQueryParam("id");
+
+        // Temukan surat berdasarkan ID
+        const surat = suratData.find(s => s.id === parseInt(suratId));
+
+        // Render detail surat
+        const detailContainer = document.getElementById("detail-container");
+        if (surat) {
+            detailContainer.innerHTML = `
+                <p><strong>ID:</strong> ${surat.id}</p>
+                <p><strong>NIM:</strong> ${surat.nim}</p>
+                <p><strong>Jenis Surat:</strong> ${surat.jenis_surat}</p>
+                <p><strong>Status:</strong> ${surat.status}</p>
+            `;
+        } else {
+            detailContainer.innerHTML = `<p>Surat tidak ditemukan!</p>`;
+        }
+    </script>
+</body>
+</html>

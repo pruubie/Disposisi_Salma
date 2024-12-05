@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mahasiswa</title>
+    <link rel="stylesheet" href="dashboard-mhs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-section">
+            <div class="content">
+                <a href="index.php" class="link">
+                    <span class="tre-jamin">SALMA FT UNDIP</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="sidebar-section">
+                <div class="sidebar-nav">
+                    <span class="track">Menu</span>
+                    <div class="link-2">
+                        <a href="dashboard-mhs.html" class="active">
+                          <div class="file-spreadsheet-5">
+                              <div class="group-6"></div>
+                          </div>
+                          <span class="dashboard">Dashboard</span>
+                      </a>
+                      </div>
+                      <div class="link-3">
+                          <a href="daftar-surat-mhs.html">
+                            <div class="file-spreadsheet-5">
+                                <div class="group-6"></div>
+                            </div>
+                            <span class="daftar-surat-mhs">Daftar Surat</span>
+                        </a>
+                        </div>
+                      <div class="link-4">
+                        <a href="input_surat.html" >
+                          <div class="file-spreadsheet">
+                              <div class="group-3"></div>
+                          </div>
+                          <span class="surat-masuk">Input Surat</span>
+                         </a>
+                      </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h1>Dashboard Mahasiswa</h1>
+                <p>Selamat datang di dashboard pengelolaan surat mahasiswa.</p>
+
+                <!-- Statistik Surat -->
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h2>Surat Diinput</h2>
+                        <p id="suratDiinput">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h2>Surat Diproses</h2>
+                        <p id="suratDiproses">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h2>Surat Selesai</h2>
+                        <p id="suratSelesai">0</p>
+                    </div>
+                </div>
+
+                <!-- Grafik Surat -->
+                <div class="chart-container">
+                    <canvas id="suratChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Data Statistik Surat (contoh data dummy)
+        const suratDiinput = 5;
+        const suratDiproses = 7;
+        const suratSelesai = 12;
+
+        // Tampilkan Data Statistik
+        document.getElementById("suratDiinput").textContent = suratDiinput;
+        document.getElementById("suratDiproses").textContent = suratDiproses;
+        document.getElementById("suratSelesai").textContent = suratSelesai;
+
+        // Chart.js untuk Grafik
+        const ctx = document.getElementById('suratChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Surat Diinput', 'Diproses', 'Selesai'],
+                datasets: [{
+                    label: 'Jumlah Surat',
+                    data: [suratDiinput, suratDiproses, suratSelesai],
+                    backgroundColor: ['#FFC107', '#FF5722', '#4CAF50'],
+                    borderColor: ['#FFA000', '#D84315', '#388E3C'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

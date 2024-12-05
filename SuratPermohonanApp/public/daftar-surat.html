@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Surat</title>
+    <link rel="stylesheet" href="daftar_surat.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap">
+    
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-section">
+            <div class="content">
+                <a href="index.php" class="link">
+                    <span class="tre-jamin">SALMA FT UNDIP</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-row">
+          <div class="sidebar-section">
+            <div class="sidebar-nav">
+                <span class="track">Menu</span>
+                <div class="link-2">
+                  <a href="dashboard.html" >
+                    <div class="file-spreadsheet-5">
+                        <div class="group-6"></div>
+                    </div>
+                    <span class="dashboard">Dashboard</span>
+                </a>
+                </div>
+                <div class="link-4">
+                  <a href="daftar-surat.html" class="active">
+                    <div class="file-spreadsheet">
+                        <div class="group-3"></div>
+                    </div>
+                    <span class="surat-masuk">Surat Masuk</span>
+                   </a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <h1>Surat Masuk</h1>
+            
+            <!-- Tabel Hasil Pencarian -->
+            <table id="surat-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NIM</th>
+                        <th>Jenis Surat</th>
+                        <th>Status</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Surat Data from API will be dynamically inserted here -->
+                </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+            <div class="pagination">
+                <button onclick="goToPage(1)">Halaman Pertama</button>
+                <button onclick="goToPage(<?php echo max(1, $page - 1); ?>)">Sebelumnya</button>
+                <input type="number" id="pageNumber" class="no-arrows" value="1" min="1" max="5" onchange="goToPage(this.value)" />
+                <span>of 5</span>
+                <button onclick="goToPage(2)">Selanjutnya</button>
+                <button onclick="goToPage(5)">Halaman Terakhir</button>
+            </div>
+        </div>
+           
+        </div>
+    </div>
+
+    <script>
+        // Initial page number
+        let currentPage = 1;
+        const itemsPerPage = 5; // Jumlah data per halaman
+
+        // Simulating the database response for demonstration
+        const suratData = [
+            { id: 1, nim: '21120122130075', jenis_surat: 'Permohonan Data Penelitian', status: 'verifikator' },
+            { id: 2, nim: '21120122130076', jenis_surat: 'Permohonan Kerja Praktek', status: 'supervisor' },
+            { id: 3, nim: '21120122130077', jenis_surat: 'Permohonan Izin Penelitian', status: 'manajer' },
+            { id: 4, nim: '21120122130078', jenis_surat: 'Permohonan Cuti', status: 'wd' },
+            { id: 5, nim: '21120122130079', jenis_surat: 'Permohonan Magang', status: 'dekan' },
+            { id: 6, nim: '21120122130080', jenis_surat: 'Surat Keterangan Aktif', status: 'completed' },
+            { id: 7, nim: '21120122130081', jenis_surat: 'Surat Keterangan Lulus', status: 'dekan' },
+            { id: 8, nim: '21120122130082', jenis_surat: 'Permohonan Surat Keterangan', status: 'manajer' },
+            { id: 9, nim: '21120122130083', jenis_surat: 'Permohonan Pindah Fakultas', status: 'supervisor' },
+            { id: 10, nim: '21120122130084', jenis_surat: 'Permohonan Bantuan Dana', status: 'verifikator' }
+        ];
+
+        // Function to render the table with the current page data
+        function renderTable(page) {
+            const tableBody = document.querySelector("#surat-table tbody");
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentData = suratData.slice(startIndex, endIndex);
+
+            currentData.forEach(surat => {
+                const row = document.createElement("tr");
+
+                const idCell = document.createElement("td");
+                idCell.textContent = surat.id;
+                row.appendChild(idCell);
+
+                const nimCell = document.createElement("td");
+                nimCell.textContent = surat.nim;
+                row.appendChild(nimCell);
+
+                const jenisSuratCell = document.createElement("td");
+                jenisSuratCell.textContent = surat.jenis_surat;
+                row.appendChild(jenisSuratCell);
+
+                const statusCell = document.createElement("td");
+                statusCell.textContent = surat.status;
+                row.appendChild(statusCell);
+
+                const detailCell = document.createElement("td");
+                const detailLink = document.createElement("a");
+                detailLink.href = `detail_surat_masuk.php?id=${surat.id}`;
+                detailLink.textContent = "Detail Surat";
+                detailCell.appendChild(detailLink);
+                row.appendChild(detailCell);
+
+                tableBody.appendChild(row);
+            });
+
+            // Update the page number input
+            document.getElementById("pageNumber").value = page;
+        }
+
+        // Event listeners for pagination buttons
+        function goToPage(page) {
+            const totalPages = Math.ceil(suratData.length / itemsPerPage);
+
+            if (page < 1 || page > totalPages) {
+                alert("Halaman tidak valid!");
+                return;
+            }
+
+            currentPage = page;
+            renderTable(page);
+        }
+
+        document.querySelector(".pagination").addEventListener("click", (e) => {
+            const target = e.target;
+
+            if (target.tagName === "BUTTON") {
+                const action = target.getAttribute("data-action");
+
+                if (action === "first") goToPage(1);
+                if (action === "prev") goToPage(currentPage - 1);
+                if (action === "next") goToPage(currentPage + 1);
+                if (action === "last") goToPage(Math.ceil(suratData.length / itemsPerPage));
+            }
+        });
+
+        // Initial render
+        renderTable(currentPage);
+
+
+    </script>
+</body>
+</html>

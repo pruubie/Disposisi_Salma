@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Surat</title>
+    <link rel="stylesheet" href="daftar-suratmhs.css">
+    <link rel="stylesheet" href="daftar_surat.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-section">
+            <div class="content">
+                <a href="index.php" class="link">
+                    <span class="tre-jamin">SALMA FT UNDIP</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="sidebar-section">
+                <div class="sidebar-nav">
+                    <span class="track">Menu</span>
+                    <div class="link-2">
+                        <a href="dashboard-mhs.html">
+                          <div class="file-spreadsheet-5">
+                              <div class="group-6"></div>
+                          </div>
+                          <span class="dashboard">Dashboard</span>
+                      </a>
+                      </div>
+                      <div class="link-3">
+                          <a href="daftar-surat-mhs.html" class="active">
+                            <div class="file-spreadsheet-5">
+                                <div class="group-6"></div>
+                            </div>
+                            <span class="daftar-surat-mhs">Daftar Surat</span>
+                        </a>
+                        </div>
+                      <div class="link-4">
+                        <a href="input_surat.html">
+                          <div class="file-spreadsheet">
+                              <div class="group-3"></div>
+                          </div>
+                          <span class="surat-masuk">Input Surat</span>
+                         </a>
+                      </div>
+                </div>
+            </div>
+            <div class="content-section">
+                <h1>Daftar Surat Mahasiswa</h1>
+                <table id="surat-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Jenis Surat</th>
+                            <th>Created At</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="suratTableBody">
+                        <!-- Data akan diisi melalui JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dummy data surat
+        const daftarSurat = [
+            { id: 1, jenis: "Surat Keterangan", created_at: "2024-11-28", status: "done", file: "surat_1.pdf" },
+            { id: 2, jenis: "Surat Izin", created_at: "2024-11-27", status: "diproses", file: null },
+            { id: 3, jenis: "Surat Rekomendasi", created_at: "2024-11-26", status: "baru", file: null },
+        ];
+
+        // Generate tabel surat
+        const suratTableBody = document.getElementById("suratTableBody");
+        daftarSurat.forEach((surat) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${surat.id}</td>
+                <td>${surat.jenis}</td>
+                <td>${surat.created_at}</td>
+                <td>${surat.status}</td>
+                <td>
+                    ${
+                        surat.status === "done"
+                            ? `<a href="uploads/${surat.file}" download class="btn-download">Unduh Surat</a>`
+                            : `<span class="btn-disabled">Unduh Surat</span>`
+                    }
+                </td>
+            `;
+            suratTableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>

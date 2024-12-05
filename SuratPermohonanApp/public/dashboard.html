@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Surat</title>
+    <link rel="stylesheet" href="daftar_surat.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-section">
+            <div class="content">
+                <a href="index.php" class="link">
+                    <span class="tre-jamin">SALMA FT UNDIP</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="sidebar-section">
+                <div class="sidebar-nav">
+                    <span class="track">Menu</span>
+                    <div class="link-2">
+                      <a href="dashboard.html" class="active">
+                        <div class="file-spreadsheet-5">
+                            <div class="group-6"></div>
+                        </div>
+                        <span class="dashboard">Dashboard</span>
+                    </a>
+                    </div>
+                    <div class="link-4">
+                      <a href="daftar-surat.html">
+                        <div class="file-spreadsheet">
+                            <div class="group-3"></div>
+                        </div>
+                        <span class="surat-masuk">Surat Masuk</span>
+                       </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h1>Dashboard Admin</h1>
+                <p>Selamat datang di sistem pengelolaan surat.</p>
+
+                <!-- Statistik Surat -->
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h2>Surat Baru</h2>
+                        <p id="suratBaru">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h2>Surat Diproses</h2>
+                        <p id="suratDiproses">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h2>Surat Selesai</h2>
+                        <p id="suratSelesai">0</p>
+                    </div>
+                </div>
+
+                <!-- Grafik Surat -->
+                <div class="chart-container">
+                    <canvas id="suratChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Data Statistik Surat
+        const suratBaru = 15;
+        const suratDiproses = 10;
+        const suratSelesai = 20;
+
+        // Tampilkan Data Statistik
+        document.getElementById("suratBaru").textContent = suratBaru;
+        document.getElementById("suratDiproses").textContent = suratDiproses;
+        document.getElementById("suratSelesai").textContent = suratSelesai;
+
+        // Chart.js untuk Grafik
+        const ctx = document.getElementById('suratChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Surat Baru', 'Diproses', 'Selesai'],
+                datasets: [{
+                    label: 'Jumlah Surat',
+                    data: [suratBaru, suratDiproses, suratSelesai],
+                    backgroundColor: ['#4CAF50', '#FFC107', '#03A9F4'],
+                    borderColor: ['#388E3C', '#FFA000', '#0288D1'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        function goToDaftarSurat() {
+            window.location.href = "daftar-surat.html";
+        }
+
+        function logout() {
+            localStorage.removeItem("token");
+            alert("Anda telah logout.");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

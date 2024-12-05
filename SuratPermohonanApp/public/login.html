@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css"> <!-- Pastikan CSS berada di folder public -->
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="nim">NIM:</label>
+        <input type="text" id="nim" name="nim" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+          <option value="tendik">Admin</option>
+          <option value="mahasiswa">Mahasiswa</option>
+        </select>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const nim = document.getElementById("nim").value;
+      const password = document.getElementById("password").value;
+      const role = document.getElementById("role").value;
+
+      const response = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nim, password, role }),
+      });
+
+      if (response.ok) {
+        const { token } = await response.json();
+        localStorage.setItem("token", token); // Menyimpan token di localStorage
+        alert("Login berhasil!");
+
+        if (role === "tendik") {
+          window.location.href = "/dashboard"; // Pengalihan ke dashboard untuk tendik
+        } else {
+          window.location.href = "/mahasiswa-home"; // Pengalihan untuk mahasiswa (sesuaikan URL jika perlu)
+        }
+      } else {
+        alert("Login gagal! Periksa kembali NIM, password, atau role Anda.");
+      }
+    });
+  </script>
+</body>
+</html>
+
+<script>
+export default LoginScreen;
+</script>

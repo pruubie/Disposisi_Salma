@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Surat</title>
+    <link rel="stylesheet" href="input.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-section">
+            <div class="content">
+                <a href="index.php" class="link">
+                    <span class="tre-jamin">SALMA FT UNDIP</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="sidebar-section">
+                <div class="sidebar-nav">
+                    <span class="track">Menu</span>
+                    <div class="link-2">
+                      <a href="dashboard-mhs.html">
+                        <div class="file-spreadsheet-5">
+                            <div class="group-6"></div>
+                        </div>
+                        <span class="dashboard">Dashboard</span>
+                    </a>
+                    </div>
+                    <div class="link-3">
+                        <a href="daftar-surat-mhs.html">
+                          <div class="file-spreadsheet-5">
+                              <div class="group-6"></div>
+                          </div>
+                          <span class="daftar-surat-mhs">Daftar Surat</span>
+                      </a>
+                      </div>
+                    <div class="link-4">
+                      <a href="input_surat.html" class="active">
+                        <div class="file-spreadsheet">
+                            <div class="group-3"></div>
+                        </div>
+                        <span class="surat-masuk">Input Surat</span>
+                       </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-section">
+                <h1>Input Surat Mahasiswa</h1>
+                <form id="inputSuratForm">
+                    <div class="form-group">
+                        <label for="jenisSurat">Jenis Surat</label>
+                        <input type="text" id="jenisSurat" name="jenisSurat" placeholder="Masukkan jenis surat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lampiran">Lampiran</label>
+                        <input type="file" id="lampiran" name="lampiran" accept=".pdf, .docx, .jpg, .png" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggalDibuat">Tanggal Dibuat</label>
+                        <input type="date" id="tanggalDibuat" name="tanggalDibuat" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="submitSuratBtn">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Event listener untuk form submit
+        const inputSuratForm = document.getElementById("inputSuratForm");
+        inputSuratForm.addEventListener("submit", (e) => {
+            e.preventDefault(); // Mencegah form refresh halaman
+
+            const jenisSurat = document.getElementById("jenisSurat").value;
+            const lampiran = document.getElementById("lampiran").files[0];
+            const tanggalDibuat = document.getElementById("tanggalDibuat").value;
+
+            console.log("Data Surat:");
+            console.log("Jenis Surat:", jenisSurat);
+            console.log("Lampiran:", lampiran.name);
+            console.log("Tanggal Dibuat:", tanggalDibuat);
+
+            alert("Data surat berhasil disimpan!");
+        });
+    </script>
+</body>
+</html>
